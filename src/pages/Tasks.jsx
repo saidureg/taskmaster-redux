@@ -4,6 +4,7 @@ import TaskCard from "../components/tasks/TaskCard";
 import { useState } from "react";
 import AddTasksModal from "../components/tasks/AddTasksModal";
 import { useSelector } from "react-redux";
+import MenuDropdown from "../components/ui/MenuDropdown";
 
 const Tasks = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,13 +35,15 @@ const Tasks = () => {
               Add Task
             </button>
             <AddTasksModal isOpen={isOpen} setIsOpen={setIsOpen} />
-            <div className="h-10 w-10 rounded-xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=644&q=80"
-                alt=""
-                className="object-cover h-full w-full "
-              />
-            </div>
+            <MenuDropdown>
+              <div className="h-10 w-10 rounded-xl overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=644&q=80"
+                  alt=""
+                  className="object-cover h-full w-full "
+                />
+              </div>
+            </MenuDropdown>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-5 mt-10">

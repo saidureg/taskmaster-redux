@@ -1,5 +1,6 @@
-import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import PropTypes from "prop-types";
 
 export default function MenuDropdown({ children }) {
   return (
@@ -22,7 +23,7 @@ export default function MenuDropdown({ children }) {
               {({ active }) => (
                 <button
                   className={`${
-                    active ? 'bg-primary text-white' : 'text-gray-900'
+                    active ? "bg-primary text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Profile
@@ -33,7 +34,7 @@ export default function MenuDropdown({ children }) {
               {({ active }) => (
                 <button
                   className={`${
-                    active ? 'bg-primary text-white' : 'text-gray-900'
+                    active ? "bg-primary text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Settings
@@ -44,7 +45,7 @@ export default function MenuDropdown({ children }) {
               {({ active }) => (
                 <button
                   className={`${
-                    active ? 'bg-primary text-white' : 'text-gray-900'
+                    active ? "bg-primary text-white" : "text-gray-900"
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   Logout
@@ -57,3 +58,7 @@ export default function MenuDropdown({ children }) {
     </Menu>
   );
 }
+
+MenuDropdown.propTypes = {
+  children: PropTypes.node,
+};

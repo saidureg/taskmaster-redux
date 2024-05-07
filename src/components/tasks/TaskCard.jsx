@@ -15,7 +15,7 @@ const TaskCard = ({ task }) => {
   } else if (task.status === "running") {
     updatedStatus = "completed";
   } else {
-    updatedStatus = "achieved";
+    updatedStatus = "archive";
   }
 
   return (
