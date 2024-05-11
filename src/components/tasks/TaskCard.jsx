@@ -1,13 +1,12 @@
 import { ArrowRightIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useDispatch } from "react-redux";
-import {
-  removeTask,
-  updateStatus,
-} from "../../redux/features/tasks/tasksSlice";
 import PropTypes from "prop-types";
-
+import { useUpdatedTaskMutation } from "../../redux/features/api/baseApi";
 const TaskCard = ({ task }) => {
-  const dispatch = useDispatch();
+  const [updatedTask, { data, error }] = useUpdatedTaskMutation();
+
+  console.log(data);
+  console.log(error);
+
   let updatedStatus;
 
   if (task.status === "pending") {
@@ -34,12 +33,12 @@ const TaskCard = ({ task }) => {
       <div className="flex justify-between mt-3">
         <p>{task?.date}</p>
         <div className="flex gap-3">
-          <button onClick={() => dispatch(removeTask(task.id))} title="Delete">
+          <button onClick={() => console.log("removed")} title="Delete">
             <TrashIcon className="h-5 w-5 text-red-500" />
           </button>
           <button
             onClick={() =>
-              dispatch(updateStatus({ id: task.id, status: updatedStatus }))
+              updatedTask({ id: task._id, data: { status: updatedStatus } })
             }
             title="In progress"
           >
