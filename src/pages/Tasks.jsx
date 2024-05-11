@@ -5,16 +5,13 @@ import { useState } from "react";
 import AddTasksModal from "../components/tasks/AddTasksModal";
 // import { useSelector } from "react-redux";
 import MenuDropdown from "../components/ui/MenuDropdown";
-import { useGetTasksQuery } from "../redux/features/api/baseApi";
+import { useGetTasksQuery } from "../redux/features/tasks/tasksApi";
 
 const Tasks = () => {
   const [isOpen, setIsOpen] = useState(false);
   // const { tasks } = useSelector((state) => state.tasksSlice);
 
-  const { data: tasks, isLoading } = useGetTasksQuery(undefined, {
-    pollingInterval: 30000,
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: tasks, isLoading } = useGetTasksQuery();
 
   const pendingTasks = tasks?.filter((task) => task.status === "pending");
   const runningTasks = tasks?.filter((task) => task.status === "running");

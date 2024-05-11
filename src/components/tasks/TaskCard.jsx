@@ -1,6 +1,7 @@
 import { ArrowRightIcon, TrashIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
-import { useUpdatedTaskMutation } from "../../redux/features/api/baseApi";
+import { useUpdatedTaskMutation } from "../../redux/features/tasks/tasksApi";
+
 const TaskCard = ({ task }) => {
   const [updatedTask, { data, error }] = useUpdatedTaskMutation();
 
