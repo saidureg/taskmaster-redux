@@ -3,16 +3,19 @@ import MyTasks from "../components/tasks/MyTasks";
 import TaskCard from "../components/tasks/TaskCard";
 import { useState } from "react";
 import AddTasksModal from "../components/tasks/AddTasksModal";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import MenuDropdown from "../components/ui/MenuDropdown";
+import { useGetTasksQuery } from "../redux/features/api/baseApi";
 
 const Tasks = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { tasks } = useSelector((state) => state.tasksSlice);
+  // const { tasks } = useSelector((state) => state.tasksSlice);
 
-  const pendingTasks = tasks.filter((task) => task.status === "pending");
-  const runningTasks = tasks.filter((task) => task.status === "running");
-  const completedTasks = tasks.filter((task) => task.status === "completed");
+  const { data: tasks, isLoading } = useGetTasksQuery();
+
+  const pendingTasks = tasks?.filter((task) => task.status === "pending");
+  const runningTasks = tasks?.filter((task) => task.status === "running");
+  const completedTasks = tasks?.filter((task) => task.status === "completed");
 
   return (
     <div className="h-screen grid grid-cols-12">
@@ -56,7 +59,7 @@ const Tasks = () => {
             </div>
             <div className="space-y-3">
               {pendingTasks?.map((task) => (
-                <TaskCard key={task.id} task={task} />
+                <TaskCard key={task._id} task={task} />
               ))}
             </div>
           </div>
@@ -69,7 +72,7 @@ const Tasks = () => {
             </div>
             <div className="space-y-3">
               {runningTasks?.map((task) => (
-                <TaskCard key={task.id} task={task} />
+                <TaskCard key={task._id} task={task} />
               ))}
             </div>
           </div>
@@ -82,7 +85,7 @@ const Tasks = () => {
             </div>
             <div className="space-y-3">
               {completedTasks?.map((task) => (
-                <TaskCard key={task.id} task={task} />
+                <TaskCard key={task._id} task={task} />
               ))}
             </div>
           </div>
